@@ -8,7 +8,12 @@ import java.util.List;
 
 @Component
 public class ProductRepository {
-    List<Product> products = new ArrayList<>();
+    List<Product> products = new ArrayList<Product>();
+
+    public ProductRepository() {
+        products.add(new Product(0,"Шуруповерт", 5000));
+        products.add(new Product(1,"Перфоратор", 10000));
+    }
 
     public Product setProduct(int id, String title, int cost) {
 
@@ -18,6 +23,15 @@ public class ProductRepository {
         product.setCost(cost);
         products.add(product);
         return product;
+    }
+
+    public Product getProductById(int id){
+        for (int i = 0; i < products.size(); i++) {
+            if (id == i) {
+                return products.get(i);
+            }
+        }
+        return null;
     }
 
     public List<Product> productList(){
